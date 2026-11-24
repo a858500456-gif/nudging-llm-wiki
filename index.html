@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nudging LLM Wiki</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Huninn&display=swap">
+<style>
+  :root { --ink:#5b4a42; --paper:#fffaf2; --grid:rgba(91,74,66,.06); --pink:#ffe3ec; --mint:#dcf1d6; --sky:#e2f1ff; --honey:#fbe7c2; }
+  * { box-sizing:border-box; }
+  body { margin:0; color:var(--ink); font-family:"Huninn","PingFang TC","Noto Sans TC",sans-serif; line-height:1.7;
+    background:var(--paper); background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px); background-size:28px 28px; }
+  main { max-width:860px; margin:0 auto; padding:40px 16px 60px; }
+  h1 { font-size:32px; margin:0 0 6px; }
+  .lead { color:#8a776d; margin:0 0 28px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px; }
+  a.card { display:block; text-decoration:none; color:inherit; background:#fff; border:3px solid var(--ink); border-radius:22px; padding:20px 22px; box-shadow:5px 6px 0 rgba(91,74,66,.14); transition:transform .15s; }
+  a.card:hover { transform:translateY(-3px); }
+  a.card h2 { font-size:20px; margin:0 0 6px; }
+  a.card p { margin:0; font-size:15px; color:#8a776d; }
+  .pink{background:var(--pink)} .mint{background:var(--mint)} .sky{background:var(--sky)} .honey{background:var(--honey)}
+  footer { margin-top:32px; font-size:13px; color:#8a776d; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Nudging LLM Wiki</h1>
+  <p class="lead">參考 Karpathy LLM Wiki 做法建立的論文知識庫：5 篇 digital nudging 相關論文、26 頁互相連結的 wiki，以及用 Graph 流程產生的教學簡報。</p>
+  <div class="grid">
+    <a class="card pink" href="outputs/slides/Valta2026-Technostress-Nudges.html"><h2>🎞️ 教學 HTML 簡報</h2><p>16 頁，論文《Designing away technostress》導讀（← → 翻頁）</p></a>
+    <a class="card sky" href="outputs/graph/slide-pipeline.html"><h2>🧭 投影片製作 Graph</h2><p>五個階段、檢查節點與退回路線的流程圖</p></a>
+    <a class="card mint" href="wiki/index.md" data-gh="tree/main/wiki"><h2>📚 LLM Wiki</h2><p>26 個 wiki 頁面：5 篇論文、14 個概念、4 個問題、目錄／地圖／紀錄（在 GitHub 上瀏覽，或用 Obsidian 開啟）</p></a>
+    <a class="card honey" href="outputs/slides/specs/Valta2026-Technostress-Nudges/02-outline.md" data-gh="tree/main/outputs/slides/specs/Valta2026-Technostress-Nudges"><h2>📝 一次實際執行的紀錄</h2><p>素材包、大綱、逐頁腳本（Graph 的中間產物）</p></a>
+    <a class="card" href="outputs/作業答案.md" data-gh="blob/main/outputs/作業答案.md"><h2>✅ 作業答案</h2><p>六題簡答</p></a>
+    <a class="card" href="AGENTS.md" data-gh="blob/main/AGENTS.md"><h2>⚙️ AGENTS.md</h2><p>wiki 的 schema：格式、引用規則、工作流程</p></a>
+  </div>
+  <footer>原始論文 PDF 因版權不公開，wiki 中保留完整出處（DOI／arXiv）。</footer>
+</main>
+<script>
+  // 在 GitHub Pages（帳號.github.io/repo）上，把 markdown 連結改成 GitHub repo 的瀏覽頁
+  const m = location.hostname.match(/^([^.]+)\.github\.io$/);
+  const repo = location.pathname.split('/').filter(Boolean)[0];
+  if (m && repo) document.querySelectorAll('[data-gh]').forEach(a => { a.href = `https://github.com/${m[1]}/${repo}/${a.dataset.gh}`; });
+</script>
+</body>
+</html>

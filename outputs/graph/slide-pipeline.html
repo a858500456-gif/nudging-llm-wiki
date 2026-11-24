@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>投影片製作 Graph</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Huninn&display=swap">
+<!-- 流程圖的唯一來源是同資料夾的 slide-pipeline.md；本頁讀取其中的 mermaid 區塊來畫圖。
+     需要用伺服器開啟（.claude/launch.json 的 outputs 設定），直接開檔案會讀不到 md。 -->
+<style>
+  :root { --ink: #5b4a42; --paper: #fffaf2; --grid: rgba(91,74,66,.06); }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; color: var(--ink); font-family: "Huninn", "PingFang TC", "Noto Sans TC", sans-serif;
+    background-color: var(--paper);
+    background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+  header { max-width: 980px; margin: 0 auto; padding: 32px 16px 8px; }
+  h1 { font-size: 28px; margin: 0 0 6px; }
+  .badge { display: inline-block; font-size: 14px; padding: 2px 12px; border: 2px solid var(--ink); border-radius: 999px; background: #fff2a6; }
+  .legend { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 14px; font-size: 14px; }
+  .legend span::before { content: ""; display: inline-block; width: 14px; height: 14px; margin-right: 6px; vertical-align: -2px; border: 2px solid var(--ink); border-radius: 4px; background: var(--c); }
+  main { max-width: 980px; margin: 0 auto; padding: 8px 16px 48px; overflow-x: auto; }
+  #graph svg { max-width: 100%; height: auto; }
+  #graph foreignObject { overflow: visible; }
+  #graph .cluster-label div, #graph .cluster-label span { white-space: nowrap; }
+  .err { background: #ffe3ec; border: 2px dashed var(--ink); border-radius: 12px; padding: 16px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>投影片製作 Graph <span class="badge">v1.0・已定案</span></h1>
+  <div class="legend">
+    <span style="--c:#fff3e3">agent 產出節點</span>
+    <span style="--c:#fff2a6">自動檢查</span>
+    <span style="--c:#ffe3ec">需要你確認／停下來問你</span>
+    <span style="--c:#dcf1d6">開始／完成</span>
+  </div>
+</header>
+<main><div id="graph">載入中…</div></main>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.min.js"></script>
+<script>
+  (async () => {
+    const box = document.getElementById('graph');
+    try {
+      await document.fonts.load('15px "Huninn"', '素材準備');  // 先載入字型，mermaid 量文字寬度才準
+      const md = await (await fetch('slide-pipeline.md', { cache: 'no-store' })).text();
+      const m = md.match(/```mermaid\n([\s\S]*?)```/);
+      if (!m) throw new Error('slide-pipeline.md 裡找不到 mermaid 區塊');
+      mermaid.initialize({
+        startOnLoad: false, theme: 'base', securityLevel: 'loose',
+        flowchart: { curve: 'basis', nodeSpacing: 40, rankSpacing: 50, htmlLabels: true },
+        themeVariables: {
+          fontFamily: '"Huninn", "PingFang TC", sans-serif', fontSize: '15px',
+          lineColor: '#8a776d', textColor: '#5b4a42',
+          clusterBkg: 'rgba(255,255,255,.75)', clusterBorder: '#c9b8aa',
+          edgeLabelBackground: '#fffaf2'
+        }
+      });
+      const { svg } = await mermaid.render('pipeline', m[1]);
+      box.innerHTML = svg;
+    } catch (e) {
+      box.innerHTML = `<div class="err">無法載入流程圖：${e.message}<br>請用本機伺服器開啟這個頁面，或在 Obsidian 打開 slide-pipeline.md。</div>`;
+    }
+  })();
+</script>
+</body>
+</html>

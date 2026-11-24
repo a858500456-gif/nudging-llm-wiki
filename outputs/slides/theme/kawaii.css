@@ -1,0 +1,337 @@
+/* =========================================================
+   Kawaii Pastel Notebook — 論文簡報共用主題
+   風格：日系可愛粉彩 × 手帳方格紙，搭配小湯圓與朋友群圖貼
+   畫布：固定 1600×900（16:9），由 deck.js 等比縮放
+   ========================================================= */
+
+:root {
+  /* 墨色：取自角色描邊的咖啡色，讓文字和圖貼同一個家族 */
+  --ink: #5b4a42;
+  --ink-soft: #8a776d;
+  --ink-faint: rgba(91, 74, 66, .10);
+
+  /* 紙張 */
+  --paper: #fffaf2;
+  --grid: rgba(91, 74, 66, .065);
+  --desk: #efe4d6;            /* 畫布外的桌面色 */
+
+  /* 角色配色（淡色＝底，深色＝強調） */
+  --cream: #fff3e3;   --cream-deep: #e9c99f;   /* 小湯圓 */
+  --pink: #ffe3ec;    --pink-deep: #ee8aa8;    /* 年糕貓 */
+  --honey: #fbe7c2;   --honey-deep: #e2a24c;   /* 布丁熊 */
+  --sky: #e2f1ff;     --sky-deep: #6fa6d8;     /* 棉花雲 */
+  --mint: #dcf1d6;    --mint-deep: #6fb37f;    /* 書蟲 */
+
+  --sticky: #fff2a6;
+  --chalk-bg: #44604f;
+  --chalk-frame: #c79a6b;
+  --chalk-ink: #fbfaf3;
+
+  --radius: 26px;
+  --border: 3px solid var(--ink);
+  --pop-shadow: 5px 6px 0 rgba(91, 74, 66, .14);
+
+  --font-body: "Huninn", "Zen Maru Gothic", "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+  --font-latin: "Zen Maru Gothic", "Huninn", "PingFang TC", sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body {
+  background: var(--desk);
+  color: var(--ink);
+  font-family: var(--font-body);
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- 舞台與投影片 ---------- */
+.stage {
+  position: absolute; left: 50%; top: 50%;
+  width: 1600px; height: 900px;
+  transform-origin: center center;
+  /* transform 由 deck.js 設定 */
+}
+.slide {
+  position: absolute; inset: 0;
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(var(--grid) 1.5px, transparent 1.5px),
+    linear-gradient(90deg, var(--grid) 1.5px, transparent 1.5px);
+  background-size: 40px 40px;
+  background-position: -1px -1px;
+  border-radius: 18px;
+  box-shadow: 0 20px 50px rgba(91, 74, 66, .18);
+  padding: 72px 96px 96px;
+  overflow: hidden;
+  opacity: 0; visibility: hidden;
+  transition: opacity .35s ease;
+}
+.slide.active { opacity: 1; visibility: visible; }
+/* 手帳左側的裝訂孔 */
+.slide::before {
+  content: ""; position: absolute; left: 30px; top: 60px; bottom: 60px; width: 18px;
+  background: radial-gradient(circle, var(--desk) 7px, transparent 8px) center top / 18px 64px repeat-y;
+  opacity: .9;
+}
+
+/* ---------- 文字 ---------- */
+.kicker {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--font-latin); font-weight: 700;
+  font-size: 22px; letter-spacing: .08em; color: var(--pink-deep);
+  margin-bottom: 14px;
+}
+.kicker::before { content: "✿"; font-size: 20px; }
+h1 { font-size: 92px; line-height: 1.15; letter-spacing: .02em; }
+h2 { font-size: 54px; line-height: 1.25; margin-bottom: 28px; }
+h3 { font-size: 30px; line-height: 1.3; margin-bottom: 10px; }
+p, li { font-size: 26px; line-height: 1.65; }
+.lead { font-size: 30px; color: var(--ink-soft); line-height: 1.6; }
+.small { font-size: 20px; color: var(--ink-soft); line-height: 1.55; }
+.num { font-family: var(--font-latin); font-weight: 900; letter-spacing: -.01em; }
+ul { padding-left: 1.1em; }
+ul li::marker { content: "• "; color: var(--pink-deep); }
+b, strong { font-weight: 700; }
+
+/* 螢光筆底線 */
+.hl { background: linear-gradient(transparent 58%, var(--honey) 58%, var(--honey) 92%, transparent 92%); padding: 0 .1em; }
+.hl.pink { background: linear-gradient(transparent 58%, var(--pink) 58%, var(--pink) 92%, transparent 92%); }
+.hl.mint { background: linear-gradient(transparent 58%, var(--mint) 58%, var(--mint) 92%, transparent 92%); }
+/* 手繪圈圈 */
+.circled {
+  display: inline-block; padding: 0 .35em;
+  border: 3px solid var(--pink-deep);
+  border-radius: 255px 18px 225px 18px / 18px 225px 18px 255px;
+}
+
+/* ---------- 版面 ---------- */
+.row { display: flex; gap: 32px; align-items: stretch; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; }
+.grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+.grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px; }
+.center { display: flex; flex-direction: column; justify-content: center; height: 100%; }
+.mt-s { margin-top: 16px; } .mt-m { margin-top: 32px; } .mt-l { margin-top: 56px; }
+
+/* ---------- 卡片 ---------- */
+.card {
+  position: relative;
+  background: #fff;
+  border: var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--pop-shadow);
+  padding: 30px 34px;
+}
+.card.cream { background: var(--cream); }
+.card.pink  { background: var(--pink); }
+.card.honey { background: var(--honey); }
+.card.sky   { background: var(--sky); }
+.card.mint  { background: var(--mint); }
+.card p, .card li { font-size: 24px; }
+/* 卡片上方的小標籤 */
+.tag {
+  display: inline-block; font-size: 19px; font-weight: 700;
+  padding: 4px 16px; border-radius: 999px; border: 2.5px solid var(--ink);
+  background: #fff; margin-bottom: 12px;
+}
+.tag.pink { background: var(--pink); } .tag.mint { background: var(--mint); }
+.tag.sky { background: var(--sky); } .tag.honey { background: var(--honey); }
+
+/* ---------- 圖貼（去背角色 + 白色描邊，像撕下來的貼紙） ---------- */
+.sticker {
+  display: block; height: auto; pointer-events: none;
+  filter:
+    drop-shadow(3px 0 0 #fff) drop-shadow(-3px 0 0 #fff)
+    drop-shadow(0 3px 0 #fff) drop-shadow(0 -3px 0 #fff)
+    drop-shadow(3px 5px 3px rgba(91, 74, 66, .18));
+}
+/* 從卡片右上角探出頭 */
+.card > .sticker.peek {
+  position: absolute; width: 110px; top: -52px; right: 18px; transform: rotate(8deg);
+}
+.card > .sticker.peek.left { right: auto; left: 18px; transform: rotate(-8deg); }
+.sticker.xs { width: 72px; } .sticker.s { width: 110px; } .sticker.m { width: 160px; }
+.sticker.l { width: 230px; } .sticker.xl { width: 320px; }
+/* 貼上去的「啪」動畫 */
+.slide.active .sticker { animation: stick-on .5s cubic-bezier(.3, 1.6, .5, 1) both; }
+.slide.active .sticker:nth-of-type(2) { animation-delay: .08s; }
+@keyframes stick-on {
+  0% { opacity: 0; scale: .6; }
+  100% { opacity: 1; scale: 1; }
+}
+
+/* ---------- 對話泡泡 ---------- */
+.speaker { display: flex; align-items: flex-end; gap: 14px; }
+.bubble {
+  position: relative; background: #fff; border: var(--border);
+  border-radius: 28px; padding: 16px 24px; font-size: 24px; line-height: 1.5;
+  box-shadow: var(--pop-shadow); max-width: 440px;
+}
+/* 尾巴：一個旋轉的小方塊，只畫兩條邊。預設指向右邊（角色在右邊） */
+.bubble::after {
+  content: ""; position: absolute; width: 22px; height: 22px;
+  background: inherit; border-right: var(--border); border-bottom: var(--border);
+  right: -13.5px; bottom: 24px; transform: rotate(-45deg);
+  border-bottom-right-radius: 4px;
+}
+.bubble.to-left::after { right: auto; left: -13.5px; transform: rotate(135deg); }   /* 角色在左邊 */
+.bubble.down::after { right: 44px; bottom: -13.5px; transform: rotate(45deg); }      /* 角色在下方 */
+.bubble.down.left-tail::after { right: auto; left: 44px; }
+.bubble.pink { background: var(--pink); } .bubble.mint { background: var(--mint); }
+.bubble.sky { background: var(--sky); } .bubble.honey { background: var(--honey); }
+
+/* ---------- 便利貼（含紙膠帶） ---------- */
+.sticky {
+  position: relative; background: var(--sticky);
+  padding: 34px 32px 28px; transform: rotate(-1.6deg);
+  box-shadow: 3px 8px 14px rgba(91, 74, 66, .16);
+  border-radius: 4px 4px 22px 4px;
+}
+.sticky::before {   /* 紙膠帶 */
+  content: ""; position: absolute; top: -16px; left: 50%; width: 130px; height: 32px;
+  transform: translateX(-50%) rotate(2deg);
+  background: repeating-linear-gradient(45deg, rgba(238, 138, 168, .55) 0 10px, rgba(255, 255, 255, .55) 10px 20px);
+  border-radius: 3px;
+}
+.sticky.pink { background: var(--pink); } .sticky.mint { background: var(--mint); } .sticky.sky { background: var(--sky); }
+.sticky.tilt-r { transform: rotate(1.4deg); }
+
+/* ---------- 小黑板（Takeaway） ---------- */
+.chalkboard {
+  position: relative; background: var(--chalk-bg); color: var(--chalk-ink);
+  border: 14px solid var(--chalk-frame); border-radius: 16px;
+  padding: 30px 40px; box-shadow: inset 0 0 40px rgba(0, 0, 0, .25), var(--pop-shadow);
+}
+.chalkboard h3 { color: var(--chalk-ink); }
+.chalkboard p { color: var(--chalk-ink); font-size: 28px; }
+.chalkboard .chalk-u { border-bottom: 3px dashed rgba(255, 255, 255, .7); }
+.chalkboard::after { /* 粉筆槽 */
+  content: ""; position: absolute; left: 30px; right: 30px; bottom: -26px; height: 10px;
+  background: var(--chalk-frame); border-radius: 0 0 8px 8px; filter: brightness(.85);
+}
+
+/* ---------- 數據：長條圖 ---------- */
+.bars { display: flex; flex-direction: column; gap: 18px; }
+.bar-row { display: grid; grid-template-columns: 170px 1fr; align-items: center; gap: 18px; }
+.bar-label { font-size: 24px; font-weight: 700; }
+.bar-track {
+  height: 50px; border-radius: 999px; background: #fff; border: var(--border); overflow: hidden;
+}
+.bar {
+  height: 100%; width: 0; border-radius: 999px; border-right: var(--border);
+  display: flex; align-items: center; justify-content: flex-end; padding-right: 18px;
+  font-family: var(--font-latin); font-weight: 900; font-size: 24px;
+  transition: width 1s cubic-bezier(.2, .8, .2, 1) .15s;
+}
+.slide.active .bar { width: var(--w); }
+.bar.pink { background: var(--pink-deep); color: #fff; }
+.bar.mint { background: var(--mint-deep); color: #fff; }
+.bar.sky  { background: var(--sky-deep); color: #fff; }
+.bar.honey{ background: var(--honey-deep); color: #fff; }
+.axis { display: flex; justify-content: space-between; margin: 6px 0 0 188px; font-size: 18px; color: var(--ink-soft); }
+
+/* 大數字 */
+.big-num { font-family: var(--font-latin); font-weight: 900; font-size: 110px; line-height: 1; color: var(--pink-deep); }
+.big-num.mint { color: var(--mint-deep); }
+
+/* ---------- 表格 ---------- */
+table.cute { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 22px; }
+table.cute th, table.cute td { padding: 12px 16px; text-align: left; border-bottom: 2px dashed var(--ink-faint); }
+table.cute th { background: var(--cream); font-weight: 700; }
+table.cute th:first-child { border-radius: 14px 0 0 14px; } table.cute th:last-child { border-radius: 0 14px 14px 0; }
+table.cute td.num, table.cute th.num { text-align: right; }
+
+/* ---------- 詳細數據抽屜（圖文講義用） ---------- */
+.more { position: absolute; right: 96px; bottom: 34px; z-index: 5; }
+.more > summary {
+  list-style: none; cursor: pointer; user-select: none;
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 21px; font-weight: 700; padding: 8px 20px;
+  background: var(--sky); border: 2.5px solid var(--ink); border-radius: 999px;
+  box-shadow: 3px 4px 0 rgba(91, 74, 66, .14);
+}
+.more > summary::-webkit-details-marker { display: none; }
+.more > summary::before { content: "📎"; }
+.more[open] > summary { background: var(--pink); }
+.more[open] > summary::after { content: "收起"; font-size: 17px; color: var(--ink-soft); }
+.more-panel {
+  position: absolute; right: 0; bottom: 58px;
+  width: 1100px; max-height: 620px; overflow: auto;
+  background: #fff; border: var(--border); border-radius: var(--radius);
+  box-shadow: 0 18px 40px rgba(91, 74, 66, .25); padding: 28px 34px;
+}
+.more-panel h3 { font-size: 26px; }
+.more-panel p, .more-panel li { font-size: 21px; }
+.more-panel .src { margin-top: 14px; font-size: 17px; color: var(--ink-soft); }
+
+/* 引用出處小字（固定在左下角） */
+.cite { font-size: 17px; color: var(--ink-soft); }
+.slide > .cite { position: absolute; left: 96px; bottom: 40px; }
+
+/* ---------- 流程圖（A → B → C） ---------- */
+.flow { display: flex; align-items: center; gap: 18px; }
+.flow .step {
+  flex: 1; text-align: center; background: #fff; border: var(--border);
+  border-radius: var(--radius); box-shadow: var(--pop-shadow); padding: 24px 20px;
+}
+.flow .step b { display: block; font-size: 30px; margin-bottom: 6px; }
+.flow .step span { font-size: 21px; color: var(--ink-soft); }
+.flow .step.pink { background: var(--pink); } .flow .step.mint { background: var(--mint); }
+.flow .step.sky { background: var(--sky); } .flow .step.honey { background: var(--honey); }
+.flow .arrow { font-size: 44px; color: var(--pink-deep); font-family: var(--font-latin); font-weight: 900; }
+
+/* ---------- 大引言 ---------- */
+.big-quote { font-size: 58px; line-height: 1.4; font-weight: 700; }
+
+/* 「閱讀觀察」：agent 自己的推論，和論文內容分開 */
+.tag.observe { background: var(--sticky); }
+.tag.observe::before { content: "🔍 "; }
+
+/* ---------- 導覽：小湯圓沿著虛線走 ---------- */
+.trail {
+  position: fixed; left: 50%; bottom: 14px; transform: translateX(-50%);
+  width: min(560px, 70vw); height: 44px; z-index: 20;
+}
+.trail::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 30px;
+  border-top: 3px dashed rgba(91, 74, 66, .35);
+}
+.trail .walker {
+  position: absolute; top: -6px; width: 40px; height: 40px; margin-left: -20px;
+  transition: left .45s cubic-bezier(.3, 1.4, .5, 1);
+}
+.trail .walker img { width: 100%; height: auto; }
+.trail .count {
+  position: absolute; right: -64px; top: 16px; font-family: var(--font-latin);
+  font-size: 15px; color: var(--ink-soft);
+}
+.navbtn {
+  position: fixed; bottom: 12px; z-index: 20;
+  width: 48px; height: 48px; border-radius: 50%;
+  background: #fff; border: 2.5px solid var(--ink); color: var(--ink);
+  font-size: 20px; cursor: pointer; box-shadow: 3px 4px 0 rgba(91, 74, 66, .14);
+}
+.navbtn.prev { left: 18px; } .navbtn.next { right: 18px; }
+.navbtn:disabled { opacity: .35; cursor: default; }
+
+/* ---------- 封面 ---------- */
+.cover .title-block { position: relative; z-index: 1; max-width: 900px; }
+.cover .paper-label {
+  display: inline-block; background: #fff; border: var(--border); border-radius: 16px;
+  padding: 10px 22px; font-size: 22px; box-shadow: var(--pop-shadow); transform: rotate(-1.5deg);
+}
+
+/* ---------- 列印：每張一頁 ---------- */
+@media print {
+  @page { size: 1600px 900px; margin: 0; }
+  body { overflow: visible; background: #fff; }
+  .stage { position: static; transform: none !important; }
+  .slide { position: relative; opacity: 1; visibility: visible; page-break-after: always; box-shadow: none; border-radius: 0; }
+  .trail, .navbtn, .more { display: none; }
+  .bar { width: var(--w) !important; }
+}
+
+/* 尊重「減少動態效果」設定 */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}

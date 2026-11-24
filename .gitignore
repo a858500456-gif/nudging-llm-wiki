@@ -1,0 +1,12 @@
+.DS_Store
+.obsidian/workspace*.json
+.obsidian/cache
+__pycache__/
+
+# 不公開：論文全文（版權）、本機設定
+raw/papers/
+raw/md/
+.claude/settings.local.json
+.obsidian/
+# 根目錄的原始圖貼素材（簡報用的已複製到 outputs/slides/assets/）
+/assets/

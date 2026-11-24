@@ -1,0 +1,537 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>讓介面幫你減壓</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Huninn&family=Zen+Maru+Gothic:wght@500;700;900&display=swap">
+<link rel="stylesheet" href="../theme/kawaii.css">
+<!--
+  論文導讀簡報（一般讀者版）
+  來源（本知識庫 wiki）：
+    wiki/papers/Valta2026-Technostress-Nudges.md
+    wiki/concepts/Technostress.md, Digital-Nudging.md, Cognitive-Effort.md, Digital-Mindset.md, Mediation-and-Moderation-Analysis.md
+    wiki/questions/Who-Benefits-More-From-Interface-Nudges.md, Interface-Nudges-in-AI-Decision-Environments.md
+  原始論文：Valta, Maier & Hildebrandt (2026), Information & Management 63, 104421. doi:10.1016/j.im.2026.104421
+  單檔版：dist/Valta2026-Technostress-Nudges.standalone.html（python3 tools/bundle_slides.py 產生）
+-->
+</head>
+<body data-walker="../assets/tangyuan/tangyuan_happy.svg">
+<div class="stage">
+
+  <!-- 1 封面 -->
+  <section class="slide cover">
+    <div class="center">
+      <div class="title-block">
+        <div class="kicker">PAPER READING · Information &amp; Management 2026</div>
+        <h1>讓介面<br><span class="hl">幫你減壓</span></h1>
+        <p class="lead mt-s">為什麼有些網站讓人好累？<br>一個小小的設計改變，能不能讓人少一點壓力？</p>
+        <div class="paper-label mt-m">📄 Valta, Maier &amp; Hildebrandt (2026). <i>Designing away technostress</i></div>
+        <p class="small mt-m">← → 方向鍵或下方按鈕翻頁　·　📎 可以展開詳細數據</p>
+      </div>
+    </div>
+    <div style="position:absolute; right:110px; top:150px; display:flex; flex-direction:column; align-items:flex-end;">
+      <div class="bubble down" style="margin-right:60px; margin-bottom:14px">今天一起來讀<br>一篇論文吧！</div>
+      <img class="sticker xl" src="../assets/tangyuan/tangyuan_wave.svg" alt="揮手的小湯圓">
+    </div>
+    <img class="sticker s" src="../assets/friends/niangao_cat_love.svg" alt="年糕貓" style="position:absolute; right:520px; bottom:110px; transform:rotate(-8deg)">
+    <img class="sticker s" src="../assets/friends/bookworm_happy.svg" alt="書蟲" style="position:absolute; right:60px; bottom:90px; transform:rotate(6deg)">
+  </section>
+
+  <!-- 2 生活經驗 -->
+  <section class="slide">
+    <div class="kicker">STORY · 從一個熟悉的場景開始</div>
+    <h2>你一定有過這種經驗</h2>
+    <div class="grid2 mt-m" style="grid-template-columns: 1.15fr 1fr">
+      <div class="card cream">
+        <img class="sticker peek" src="../assets/tangyuan/tangyuan_sweat.svg" alt="流汗的小湯圓">
+        <span class="tag">🚗 上網訂租車</span>
+        <p>三台車、三種保險、一大堆小字……</p>
+        <ul class="mt-s">
+          <li>「年輕駕駛附加費」到底適不適用我？</li>
+          <li>「超過里程每英里加收」要怎麼算？</li>
+          <li>「押金另計」是多少？</li>
+        </ul>
+        <p class="mt-s"><b>到底哪個划算？？</b></p>
+      </div>
+      <div class="card pink" style="display:flex; flex-direction:column; justify-content:center">
+        <p>線上交易的放棄率接近</p>
+        <div class="big-num">70%</div>
+        <p class="mt-s">每年約造成 <b class="num">2,600</b> 億美元的營收損失</p>
+        <p class="small">（論文引用 Baymard Institute 2024）</p>
+      </div>
+    </div>
+    <div class="row mt-l" style="align-items:center; justify-content:space-between">
+      <p class="lead">很多人不是不想完成，而是<span class="hl pink"><b>被介面搞到放棄</b></span>。</p>
+      <div class="speaker">
+        <div class="bubble">我也放棄過<br>好幾次……</div>
+        <img class="sticker s" src="../assets/friends/cotton_cloud_sad.svg" alt="難過的棉花雲">
+      </div>
+    </div>
+    <p class="cite">出處：wiki/papers/Valta2026-Technostress-Nudges · 論文 §1</p>
+  </section>
+
+  <!-- 3 Technostress -->
+  <section class="slide">
+    <div class="kicker">KEY CONCEPT 01</div>
+    <h2>這種壓力有個名字：<span class="hl pink">Technostress</span>（科技壓力）</h2>
+    <p class="lead">使用資訊系統時產生的壓力。同樣是「系統很複雜」，人會有兩種不同的感受：</p>
+    <div class="grid2 mt-l">
+      <div class="card pink">
+        <img class="sticker peek" src="../assets/tangyuan/tangyuan_angry.svg" alt="生氣的小湯圓">
+        <span class="tag">😣 Hindrance 阻礙型</span>
+        <h3>「這系統在擋我的路！」</h3>
+        <ul>
+          <li>資訊不清楚、導覽複雜、一次塞太多</li>
+          <li>可能導致倦怠、放棄任務、不想再用</li>
+        </ul>
+      </div>
+      <div class="card mint">
+        <img class="sticker peek" src="../assets/tangyuan/tangyuan_cheer.svg" alt="振奮的小湯圓">
+        <span class="tag">💪 Challenge 挑戰型</span>
+        <h3>「有點難，但我能學到東西。」</h3>
+        <ul>
+          <li>工作量大、承擔新的責任</li>
+          <li>可能帶來成長和正面結果</li>
+        </ul>
+      </div>
+    </div>
+    <div class="row mt-l" style="align-items:center; justify-content:space-between">
+      <div class="sticky" style="max-width:640px">
+        <p><b>這篇研究只看「阻礙型」</b>：因為它和負面後果的關聯最一致。</p>
+      </div>
+      <div class="speaker">
+        <div class="bubble">同一件事，感受<br>可以完全不同喔！</div>
+        <img class="sticker m" src="../assets/friends/bookworm_thinking.svg" alt="思考中的書蟲">
+      </div>
+    </div>
+    <p class="cite">出處：wiki/concepts/Technostress · 論文 §2.1</p>
+  </section>
+
+  <!-- 4 研究問題 -->
+  <section class="slide">
+    <div class="kicker">RESEARCH QUESTION</div>
+    <h2>過去的解法：把系統砍簡單</h2>
+    <div class="grid2 mt-l">
+      <div class="card cream">
+        <img class="sticker peek" src="../assets/friends/pudding_bear_thinking.svg" alt="思考中的布丁熊">
+        <span class="tag honey">以前的思路</span>
+        <h3>介面太複雜？那就簡化、刪功能！</h3>
+        <p>問題是：很多任務<b>本來就很複雜</b>——租車、報帳、採購、選保險，不可能全部砍掉。</p>
+      </div>
+      <div class="card mint">
+        <img class="sticker peek" src="../assets/tangyuan/tangyuan_thinking.svg" alt="思考中的小湯圓">
+        <span class="tag mint">這篇研究的新問題</span>
+        <h3><span class="hl">不減少複雜度</span>，只改變「怎麼呈現」，能不能讓人壓力變小？</h3>
+        <p>如果可以，那對<b>誰</b>最有效？</p>
+      </div>
+    </div>
+    <div class="chalkboard mt-l" style="max-width:1100px">
+      <p>📝 研究問題：介面設計的 nudge 原則，如何影響使用者在複雜決策任務中感受到的阻礙型科技壓力？數位思維又扮演什麼角色？</p>
+    </div>
+    <p class="cite">出處：wiki/papers/Valta2026-Technostress-Nudges · 論文 §1</p>
+  </section>
+
+  <!-- 5 Nudge -->
+  <section class="slide">
+    <div class="kicker">KEY CONCEPT 02</div>
+    <h2>工具：<span class="hl mint">Nudge</span>（輕推）</h2>
+    <div class="row" style="align-items:center; gap:40px">
+      <div class="sticky tilt-r" style="flex:1">
+        <p>🍎 像自助餐廳把水果放在視線高度：<br><b>不禁止任何選項、不給錢</b>，只調整擺放方式，讓人更容易做出好選擇。</p>
+      </div>
+      <div class="speaker">
+        <div class="bubble">是溫柔地<br>推一下喔～</div>
+        <img class="sticker m" src="../assets/tangyuan/tangyuan_love.svg" alt="開心的小湯圓">
+      </div>
+    </div>
+    <div class="grid2 mt-l">
+      <div class="card sky">
+        <img class="sticker peek" src="../assets/tangyuan/tangyuan_happy.svg" alt="微笑的小湯圓">
+        <span class="tag sky">① Default-setting 預設選項</span>
+        <h3>先幫你勾好一個合理的選項</h3>
+        <p>想換隨時可以換。<br>原理：<b>少做一些決定</b> → 不用每個都比較</p>
+      </div>
+      <div class="card honey">
+        <img class="sticker peek" src="../assets/tangyuan/tangyuan_cheer.svg" alt="振奮的小湯圓">
+        <span class="tag honey">② Salience-framing 視覺突顯</span>
+        <h3>用標籤、圖示、版面讓重點跳出來</h3>
+        <p>選項一個都沒少。<br>原理：<b>引導注意力</b> → 不用在小字裡大海撈針</p>
+      </div>
+    </div>
+    <details class="more">
+      <summary>詳細說明</summary>
+      <div class="more-panel">
+        <h3>兩種 nudge 的理論機制（論文 §2.2、§3）</h3>
+        <table class="cute">
+          <tr><th></th><th>Default-setting</th><th>Salience-framing</th></tr>
+          <tr><td>做法</td><td>預選一個選項，使用者可以更改</td><td>用視覺提示讓任務相關資訊更顯眼，不改變選項集合</td></tr>
+          <tr><td>機制</td><td>choice simplification（簡化選擇）</td><td>attentional guidance（引導注意力）</td></tr>
+          <tr><td>適用情境</td><td>重複、低風險的設定決策</td><td>資訊多、需要整合比較的任務</td></tr>
+        </table>
+        <ul class="mt-s">
+          <li><b>最有效</b>：任務複雜、選項多、有時間壓力或需要負責的時候</li>
+          <li><b>效果較弱</b>：任務簡單、使用者已有明確偏好，甚至可能引發反感（reactance）</li>
+          <li>這裡的 salience-framing 指介面上的視覺突顯，不是 gain-loss 那種文字框架效應</li>
+        </ul>
+        <p class="src">出處：wiki/concepts/Digital-Nudging</p>
+      </div>
+    </details>
+    <p class="cite">出處：wiki/concepts/Digital-Nudging · 論文 §2.2</p>
+  </section>
+
+  <!-- 6 Digital mindset -->
+  <section class="slide">
+    <div class="kicker">KEY CONCEPT 03</div>
+    <h2>每個人面對科技的「思考習慣」不一樣</h2>
+    <p class="lead">研究者稱為 <b>Digital Mindset（數位思維）</b>：不是你會不會操作，而是你<span class="hl">怎麼看待</span>數位世界。它包含四種習慣：</p>
+    <div class="grid4 mt-l">
+      <div class="card honey"><img class="sticker peek left" src="../assets/friends/pudding_bear_happy.svg" alt="布丁熊"><h3 class="mt-m">🧩 組合思考</h3><p>習慣把現成的工具拼起來解決問題</p></div>
+      <div class="card sky"><img class="sticker peek left" src="../assets/friends/cotton_cloud_happy.svg" alt="棉花雲"><h3 class="mt-m">🔧 延伸思考</h3><p>總在想「這東西還能拿來做什麼？」</p></div>
+      <div class="card mint"><img class="sticker peek left" src="../assets/friends/bookworm_happy.svg" alt="書蟲"><h3 class="mt-m">📊 資料思考</h3><p>做決定前想先蒐集一堆資料</p></div>
+      <div class="card pink"><img class="sticker peek left" src="../assets/friends/niangao_cat_happy.svg" alt="年糕貓"><h3 class="mt-m">🎲 冒險思考</h3><p>願意嘗試有風險的新做法</p></div>
+    </div>
+    <p class="small mt-m">原文：combinatorial、generative、data-driven、risk-affine thinking。研究者認為這是<b>可以透過訓練改變</b>的特質。</p>
+    <details class="more">
+      <summary>詳細說明</summary>
+      <div class="more-panel">
+        <h3>數位思維和相似概念的差別（論文 §2.3）</h3>
+        <table class="cute">
+          <tr><th>概念</th><th>捕捉的是什麼</th></tr>
+          <tr><td>Digital literacy 數位素養</td><td>能做什麼：操作工具的技能</td></tr>
+          <tr><td>IT self-efficacy 自我效能</td><td>相信自己能做什麼：完成 IT 任務的信心</td></tr>
+          <tr><td>Personal innovativeness 個人創新性</td><td>傾向：嘗試新科技的意願</td></tr>
+          <tr><td><b>Digital mindset 數位思維</b></td><td><b>怎麼理解數位世界的複雜性</b>：思考框架</td></tr>
+        </table>
+        <ul class="mt-s">
+          <li>量表：14 題（Hildebrandt &amp; Beimborn 2024），Cronbach's α = 0.734</li>
+          <li>建模為二階構念，四個維度的負荷量介於 0.787–0.882</li>
+        </ul>
+        <p class="src">出處：wiki/concepts/Digital-Mindset</p>
+      </div>
+    </details>
+    <p class="cite">出處：wiki/concepts/Digital-Mindset · 論文 §2.3</p>
+  </section>
+
+  <!-- 7 實驗設計 -->
+  <section class="slide">
+    <div class="kicker">EXPERIMENT</div>
+    <h2>任務：幫主管訂一台出差用的租車</h2>
+    <div class="grid2" style="grid-template-columns: 1.2fr 1fr">
+      <div class="card">
+        <ul>
+          <li>10 天、每天約 200 英里、甲地借乙地還、要全險</li>
+          <li>從 <b>3 台車 × 3 種保險</b>中各選一個，同時考慮 <b>6 個條件</b></li>
+          <li>資訊<span class="hl pink">故意寫得很亂</span>：費用適不適用不清楚、年齡限制前後不一致</li>
+          <li>主管事後會檢查你選得好不好</li>
+        </ul>
+      </div>
+      <div class="sticky">
+        <h3>💡 巧妙的設計</h3>
+        <p>三台車把所有條件算進去後<b>總價一樣</b>，所以<b>沒有標準答案</b>。</p>
+        <p class="small mt-s">要看的不是「選了哪台」，而是「過程中有多痛苦」。</p>
+      </div>
+    </div>
+    <div class="grid3 mt-l">
+      <div class="card pink"><img class="sticker peek" src="../assets/tangyuan/tangyuan_sweat.svg" alt="流汗的小湯圓"><h3>控制組</h3><p>原始的混亂介面<br><span class="small">71 人</span></p></div>
+      <div class="card sky"><img class="sticker peek" src="../assets/tangyuan/tangyuan_happy.svg" alt="微笑的小湯圓"><h3>預設選項組</h3><p>幫你先勾好一台<br><span class="small">70 人</span></p></div>
+      <div class="card honey"><img class="sticker peek" src="../assets/tangyuan/tangyuan_cheer.svg" alt="振奮的小湯圓"><h3>視覺突顯組</h3><p>標籤、評分突顯一台<br><span class="small">73 人</span></p></div>
+    </div>
+    <details class="more">
+      <summary>詳細數據</summary>
+      <div class="more-panel">
+        <h3>樣本篩選（論文 Appendix Table 6）</h3>
+        <table class="cute">
+          <tr><th>步驟</th><th class="num">排除</th><th class="num">剩下</th></tr>
+          <tr><td>MTurk 初始回覆（approval rate ≥ 95%）</td><td class="num">—</td><td class="num">655</td></tr>
+          <tr><td>沒通過 4 題注意力檢查中的任一題</td><td class="num">233</td><td class="num">422</td></tr>
+          <tr><td>完成時間 &lt; 3 分鐘</td><td class="num">163</td><td class="num">259</td></tr>
+          <tr><td>作答變異太小或有固定模式</td><td class="num">39</td><td class="num">220</td></tr>
+          <tr><td>離群值</td><td class="num">6</td><td class="num"><b>214</b></td></tr>
+        </table>
+        <ul class="mt-s">
+          <li>平均年齡 35.75 歲（SD 11.55），女性 49.5%，每天平均使用 IT 6.36 小時</li>
+          <li>量表皆為 7 點量表：阻礙型壓力 14 題（α = 0.931）、數位思維 14 題、費腦程度 7 題（α = 0.711）</li>
+          <li>兩種 nudge 分開測試，不組合，以確保因果可以歸因</li>
+        </ul>
+        <p class="src">出處：wiki/papers/Valta2026-Technostress-Nudges §4.2</p>
+      </div>
+    </details>
+    <p class="cite">出處：wiki/papers/Valta2026-Technostress-Nudges · 論文 §4.2</p>
+  </section>
+
+  <!-- 8 壓力驗證 -->
+  <section class="slide">
+    <div class="kicker">PRETEST</div>
+    <h2>先確認：這個任務真的會讓人有壓力嗎？</h2>
+    <div class="row" style="gap:56px">
+      <div style="flex:1.4">
+        <p class="lead" style="margin-bottom:22px">人緊張時手會微微出汗，皮膚導電度上升。研究者找 12 人測<b>皮膚電導</b>：</p>
+        <div class="bars">
+          <div class="bar-row"><div class="bar-label">做混亂任務</div><div class="bar-track"><div class="bar pink" style="--w:85%">10.64 µS</div></div></div>
+          <div class="bar-row"><div class="bar-label">一般租車網站</div><div class="bar-track"><div class="bar honey" style="--w:72%">8.99 µS</div></div></div>
+          <div class="bar-row"><div class="bar-label">填問卷時</div><div class="bar-track"><div class="bar mint" style="--w:52%">6.46 µS</div></div></div>
+        </div>
+        <div class="card cream mt-m" style="padding:22px 28px">
+          <p>自評壓力也一樣：混亂任務 <b class="num">4.77</b> 分 vs. 一般網站 <b class="num">3.74</b> 分</p>
+        </div>
+      </div>
+      <div style="flex:1; display:flex; flex-direction:column; justify-content:center; align-items:center; gap:10px">
+        <div class="bubble down">身體會誠實<br>反應壓力！</div>
+        <img class="sticker l" src="../assets/tangyuan/tangyuan_surprised.svg" alt="驚訝的小湯圓">
+        <p class="small" style="text-align:center">→ 這個實驗情境<b>確實能製造壓力</b></p>
+      </div>
+    </div>
+    <p class="cite">出處：wiki/papers/Valta2026-Technostress-Nudges · 論文 §4.1</p>
+  </section>
+
+  <!-- 9 發現 1 -->
+  <section class="slide">
+    <div class="kicker">FINDING 01</div>
+    <h2>兩種 nudge 都讓壓力<span class="circled">明顯下降</span></h2>
+    <div class="row" style="gap:48px">
+      <div style="flex:1.35">
+        <p class="small" style="margin-bottom:14px">阻礙型壓力分數（1 = 完全沒有，7 = 非常強烈）</p>
+        <div class="bars">
+          <div class="bar-row"><div class="bar-label">控制組</div><div class="bar-track"><div class="bar pink" style="--w:78.1%">5.47</div></div></div>
+          <div class="bar-row"><div class="bar-label">預設選項</div><div class="bar-track"><div class="bar sky" style="--w:69.6%">4.87</div></div></div>
+          <div class="bar-row"><div class="bar-label">視覺突顯</div><div class="bar-track"><div class="bar honey" style="--w:69.1%">4.84</div></div></div>
+        </div>
+        <div class="axis"><span>0</span><span>7</span></div>
+        <div class="grid2 mt-m" style="gap:24px">
+          <div class="card cream" style="padding:22px 26px"><p>差距約 <b class="num">0.6</b> 分，屬於<span class="hl">中到大</span>的效果</p></div>
+          <div class="card sky" style="padding:22px 26px"><p>兩種 nudge 之間<b>沒有顯著差異</b></p></div>
+        </div>
+      </div>
+      <div style="flex:1; display:flex; flex-direction:column; gap:40px">
+        <div class="chalkboard">
+          <h3>📝 Takeaway</h3>
+          <p>任務沒有變簡單，<br>只是<span class="chalk-u">換個方式呈現</span>，<br>壓力就變小了。</p>
+        </div>
+        <div class="speaker" style="justify-content:flex-end">
+          <div class="bubble pink">我也覺得<br>輕鬆多了～</div>
+          <img class="sticker m" src="../assets/tangyuan/tangyuan_cheer.svg" alt="振奮的小湯圓">
+        </div>
+      </div>
+    </div>
+    <details class="more">
+      <summary>詳細數據</summary>
+      <div class="more-panel">
+        <h3>統計結果（論文 §5.2）</h3>
+        <table class="cute">
+          <tr><th>條件</th><th class="num">N</th><th class="num">平均 (SD)</th><th class="num">Cohen's d</th><th class="num">迴歸 total effect β</th></tr>
+          <tr><td>控制組</td><td class="num">71</td><td class="num">5.47 (0.87)</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>預設選項</td><td class="num">70</td><td class="num">4.87 (1.03)</td><td class="num">−0.63</td><td class="num">−0.439**</td></tr>
+          <tr><td>視覺突顯</td><td class="num">73</td><td class="num">4.84 (1.15)</td><td class="num">−0.62</td><td class="num">−0.580***</td></tr>
+        </table>
+        <ul class="mt-s">
+          <li>One-way ANOVA：<i>F</i>(2, 211) = 8.57, <i>p</i> &lt; .001</li>
+          <li>兩種 nudge 之差：mean diff = 0.03, <i>p</i> = .87, 95% CI [−0.33, 0.39]</li>
+          <li>β 看起來 salience 比較大，但作者<b>沒有正式檢定</b>哪一種比較好</li>
+        </ul>
+        <p class="src">** p &lt; .01, *** p &lt; .001 ｜ 出處：wiki/papers/Valta2026-Technostress-Nudges §5.2</p>
+      </div>
+    </details>
+    <p class="cite">出處：wiki/papers/Valta2026-Technostress-Nudges · 論文 §5.2</p>
+  </section>
+
+  <!-- 10 發現 2 -->
+  <section class="slide">
+    <div class="kicker">FINDING 02</div>
+    <h2>為什麼有效？因為「<span class="hl mint">比較不費腦</span>」</h2>
+    <div class="flow mt-m">
+      <div class="step sky"><b>介面 nudge</b><span>預設選項／視覺突顯</span></div>
+      <div class="arrow">→</div>
+      <div class="step"><b>比較不費腦</b><span>找資訊、比較選項的負擔下降</span></div>
+      <div class="arrow">→</div>
+      <div class="step mint"><b>壓力下降</b><span>覺得系統比較不會擋路</span></div>
+    </div>
+    <div class="grid2 mt-l" style="grid-template-columns: 1.2fr 1fr">
+      <div class="card cream">
+        <img class="sticker peek" src="../assets/friends/bookworm_thinking.svg" alt="思考中的書蟲">
+        <span class="tag honey">📊 部分中介</span>
+        <p>統計上，nudge 的減壓效果大約有 <span class="circled"><b class="num">四成</b></span> 是透過「降低費腦程度」達成，其餘是 nudge 直接帶來的。</p>
+        <p class="small mt-s">間接效果約占總效果 37–38%，由論文 Table 4 推算；學術上稱為 partial mediation（部分中介）</p>
+      </div>
+      <div class="sticky pink tilt-r">
+        <p>⚠️ 研究者自己也提醒：問卷分不出是<b>真的</b>比較不費腦，還是只是<b>感覺</b>比較不費腦。</p>
+      </div>
+    </div>
+    <details class="more">
+      <summary>詳細數據</summary>
+      <div class="more-panel">
+        <h3>中介分析（論文 §5.4、Table 4；5000 次 bootstrap）</h3>
+        <table class="cute">
+          <tr><th></th><th class="num">總效果 c</th><th class="num">直接效果 c′</th><th class="num">間接效果 a×b（95% CI）</th></tr>
+          <tr><td>預設選項</td><td class="num">−0.439**</td><td class="num">−0.276**</td><td class="num">−0.163 [−0.23, −0.05]</td></tr>
+          <tr><td>視覺突顯</td><td class="num">−0.580***</td><td class="num">−0.361**</td><td class="num">−0.219 [−0.29, −0.08]</td></tr>
+        </table>
+        <ul class="mt-s">
+          <li>nudge → 費腦程度（a）：預設 −0.323、突顯 −0.434；費腦程度 → 壓力（b）：0.504</li>
+          <li>驗算：−0.323 × 0.504 ≈ −0.163；−0.276 + (−0.163) = −0.439 ✓</li>
+          <li>敏感度分析：拿掉和「資訊清不清楚」重疊的題目後，結果模式不變、效果變小（間接效果 −0.107 / −0.146）</li>
+        </ul>
+        <p class="src">出處：wiki/papers/Valta2026-Technostress-Nudges §5.4 · wiki/concepts/Mediation-and-Moderation-Analysis</p>
+      </div>
+    </details>
+    <p class="cite">出處：wiki/concepts/Cognitive-Effort · 論文 §5.4</p>
+  </section>
+
+  <!-- 11 發現 3 -->
+  <section class="slide">
+    <div class="kicker">FINDING 03</div>
+    <h2>數位思維越強的人，減壓效果越大</h2>
+    <p class="small" style="margin-bottom:22px">減壓效果強度（標準化係數的大小，越長代表壓力降越多）</p>
+    <div class="grid2">
+      <div class="card sky">
+        <span class="tag sky">① 預設選項</span>
+        <div class="bars mt-s">
+          <div class="bar-row"><div class="bar-label">數位思維低</div><div class="bar-track"><div class="bar honey" style="--w:28%">0.20</div></div></div>
+          <div class="bar-row"><div class="bar-label">數位思維高</div><div class="bar-track"><div class="bar sky" style="--w:74%">0.52</div></div></div>
+        </div>
+      </div>
+      <div class="card honey">
+        <span class="tag honey">② 視覺突顯</span>
+        <div class="bars mt-s">
+          <div class="bar-row"><div class="bar-label">數位思維低</div><div class="bar-track"><div class="bar honey" style="--w:37%">0.26</div></div></div>
+          <div class="bar-row"><div class="bar-label">數位思維高</div><div class="bar-track"><div class="bar sky" style="--w:92%">0.65</div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="grid2 mt-l">
+      <div class="card mint">
+        <img class="sticker peek" src="../assets/tangyuan/tangyuan_happy.svg" alt="微笑的小湯圓">
+        <span class="tag mint">🎉 好消息</span>
+        <p>數位思維低的人也<span class="hl">有顯著效果</span>，只是比較小。</p>
+      </div>
+      <div class="card">
+        <img class="sticker peek" src="../assets/friends/bookworm_surprised.svg" alt="驚訝的書蟲">
+        <span class="tag">💬 研究者的解釋</span>
+        <p>數位思維強的人想比較更多選項、蒐集更多資訊，反而容易想太多；nudge 幫他們收斂。</p>
+      </div>
+    </div>
+    <details class="more">
+      <summary>詳細數據</summary>
+      <div class="more-panel">
+        <h3>調節分析（論文 §5.3、Appendix Table 8）</h3>
+        <ul>
+          <li>交互作用：預設 × 數位思維 β = −0.278**；突顯 × 數位思維 β = −0.307**（數位思維先做 mean-centering）</li>
+          <li>Simple slope（±1 SD）：預設 低 −0.195（p = .041）/ 高 −0.515（p &lt; .001）；突顯 低 −0.260（p = .012）/ 高 −0.645（p &lt; .001）</li>
+        </ul>
+        <table class="cute mt-s">
+          <tr><th>探索性分析：哪個維度在調節？</th><th class="num">× 預設 β (p)</th><th class="num">× 突顯 β (p)</th></tr>
+          <tr><td>延伸思考 generative</td><td class="num">−0.238 (.039)</td><td class="num">−0.336 (.016)</td></tr>
+          <tr><td>組合思考 combinatorial</td><td class="num">−0.270 (.028)</td><td class="num">−0.252 (.048)</td></tr>
+          <tr><td>資料思考 data-driven</td><td class="num">−0.164 (.215)</td><td class="num">−0.057 (.401)</td></tr>
+          <tr><td>冒險思考 risk-affine</td><td class="num">−0.016 (.632)</td><td class="num">−0.046 (.487)</td></tr>
+        </table>
+        <p class="src">→ 主要由延伸思考和組合思考帶動 ｜ 出處：wiki/concepts/Digital-Mindset</p>
+      </div>
+    </details>
+    <p class="cite">出處：wiki/papers/Valta2026-Technostress-Nudges · 論文 §5.3</p>
+  </section>
+
+  <!-- 12 反直覺 -->
+  <section class="slide">
+    <div class="kicker">THINK ABOUT IT</div>
+    <h2>咦？不是越不熟科技的人越需要幫忙嗎？</h2>
+    <div class="grid2 mt-l">
+      <div class="card honey">
+        <img class="sticker peek" src="../assets/friends/pudding_bear_sad.svg" alt="布丁熊">
+        <span class="tag honey">🪜 鷹架說</span>
+        <p>不熟數位工具的人缺乏應對方法，應該<b>最需要</b>介面提供的結構。</p>
+        <p class="small mt-s">可能在不熟悉的系統、時間很趕時比較適用</p>
+      </div>
+      <div class="card mint">
+        <img class="sticker peek" src="../assets/friends/cotton_cloud_love.svg" alt="棉花雲">
+        <span class="tag mint">🎯 收斂說（本研究支持）</span>
+        <p>熟悉數位的人看到的「可能性」更多，更容易想太多，<b>nudge 幫他們聚焦</b>。</p>
+        <p class="small mt-s">在複雜、需要負責的決策中比較適用</p>
+      </div>
+    </div>
+    <div class="row mt-l" style="align-items:center; gap:30px">
+      <div class="sticky" style="flex:1">
+        <span class="tag observe">閱讀觀察</span>
+        <p>另一個可能：數位思維強的人本來壓力就比較高（兩者呈正相關），<b>起點高，下降空間也比較大</b>。這點論文沒有特別討論。</p>
+      </div>
+      <img class="sticker m" src="../assets/tangyuan/tangyuan_thinking.svg" alt="思考中的小湯圓">
+    </div>
+    <p class="cite">出處：wiki/questions/Who-Benefits-More-From-Interface-Nudges · 論文 §6.1.3</p>
+  </section>
+
+  <!-- 13 保留懷疑 -->
+  <section class="slide">
+    <div class="kicker">LIMITATIONS</div>
+    <h2>這個結論的邊界在哪裡？</h2>
+    <div class="grid2 mt-l">
+      <div class="card cream">
+        <img class="sticker peek" src="../assets/friends/pudding_bear_thinking.svg" alt="思考中的布丁熊">
+        <span class="tag">作者自己承認的限制</span>
+        <ul>
+          <li>只測了「租車」一種任務、只做一次；天天看到同樣的 nudge 可能會麻痺</li>
+          <li>受試者是線上平台的打工者，沒有真的花錢、也沒有真的主管</li>
+          <li>兩種 nudge 分開測，沒測「一起用」的效果</li>
+        </ul>
+      </div>
+      <div class="sticky tilt-r">
+        <span class="tag observe">閱讀觀察</span>
+        <ul>
+          <li>「視覺突顯」組的介面寫著<b>「Lowest Total Price」</b>，但三台車其實總價一樣——這已經不只是視覺突顯</li>
+          <li>655 份回覆中約 <span class="circled"><b class="num">67%</b></span> 被剔除，留下的可能是特別認真的人</li>
+        </ul>
+      </div>
+    </div>
+    <p class="cite">出處：wiki/papers/Valta2026-Technostress-Nudges · 論文 §6.3</p>
+  </section>
+
+  <!-- 14 啟示 -->
+  <section class="slide">
+    <div class="kicker">SO WHAT?</div>
+    <h2>減壓可以從介面開始</h2>
+    <div class="grid3 mt-l">
+      <div class="card sky">
+        <img class="sticker peek" src="../assets/friends/cotton_cloud_happy.svg" alt="棉花雲">
+        <span class="tag sky">🎨 給設計者</span>
+        <p>重複、低風險的設定 → 用<b>預設選項</b><br>資訊多、要比較 → 用<b>視覺突顯</b><br>但都要保留修改的自由</p>
+      </div>
+      <div class="card honey">
+        <img class="sticker peek" src="../assets/friends/pudding_bear_happy.svg" alt="布丁熊">
+        <span class="tag honey">🏢 給組織</span>
+        <p>好的介面設計＋提升員工數位思維的訓練，兩者<b>可以互補</b>，不需要先訓練完才改介面</p>
+      </div>
+      <div class="card pink">
+        <img class="sticker peek" src="../assets/friends/niangao_cat_happy.svg" alt="年糕貓">
+        <span class="tag pink">🤖 給 AI 時代</span>
+        <p>AI 會產生大量、不確定的資訊。可以突顯<b>信心程度、風險、資料來源</b>；但也要小心讓人過度依賴 AI</p>
+      </div>
+    </div>
+    <div class="row mt-l" style="justify-content:flex-end">
+      <div class="speaker">
+        <div class="bubble">好的設計，<br>從使用者的感受出發！</div>
+        <img class="sticker m" src="../assets/tangyuan/tangyuan_love.svg" alt="開心的小湯圓">
+      </div>
+    </div>
+    <p class="cite">出處：wiki/papers/Valta2026-Technostress-Nudges §6.2 · wiki/questions/Interface-Nudges-in-AI-Decision-Environments</p>
+  </section>
+
+  <!-- 15 總結 -->
+  <section class="slide">
+    <div class="center" style="align-items:center; text-align:center">
+      <img src="../assets/friends/_group.png" alt="小湯圓和朋友們" style="width:760px; height:auto; margin-bottom:20px">
+      <div class="chalkboard" style="max-width:1100px">
+        <div class="kicker" style="color:var(--sticky)">ONE-LINE TAKEAWAY</div>
+        <p class="big-quote" style="color:var(--chalk-ink)">複雜的任務不一定要變簡單，<br><span class="chalk-u">只要換個方式呈現</span>，人就能少一點壓力。</p>
+      </div>
+      <p class="small mt-l" style="max-width:1200px">
+        <b>資料來源（本知識庫 wiki）</b>：papers/Valta2026-Technostress-Nudges · concepts/Technostress · concepts/Digital-Nudging · concepts/Cognitive-Effort · concepts/Digital-Mindset · questions/Who-Benefits-More-From-Interface-Nudges · questions/Interface-Nudges-in-AI-Decision-Environments<br>
+        <b>原始論文</b>：Valta, M., Maier, C., &amp; Hildebrandt, Y. (2026). Designing away technostress. <i>Information &amp; Management</i>, 63, 104421.
+      </p>
+    </div>
+  </section>
+
+</div>
+<script src="../theme/deck.js"></script>
+</body>
+</html>

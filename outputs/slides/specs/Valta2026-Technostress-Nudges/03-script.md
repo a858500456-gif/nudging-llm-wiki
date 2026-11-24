@@ -167,7 +167,40 @@ created: 2026-11-24
 - 台詞：
 - 出處：papers/Valta2026-Technostress-Nudges §6.3（F29, F30）
 
-## S15 減壓可以從介面開始
+## S15 放到更大的研究脈絡看
+- 版型：左分類表卡片（三類 nudge 的效果量＋本研究位置）＋右卡片（推薦系統也是 nudge）
+- 內文：Meta-analysis：214 篇研究的 nudge 整體效果中等
+  改變選項結構 > 改變資訊 > 協助決策；Valta 的預設選項屬於最強的一類
+  推薦系統的排序和篩選本身就是 nudge
+- 數據：整體 d = 0.45；結構 0.55、資訊 0.38、協助 0.31；預設選項 0.62；87 種機制只研究過 18 種
+- 抽屜：
+- 圖貼：assets/friends/bookworm_happy.svg（開心）
+- 台詞：
+- 出處：papers/Mertens2022-Nudging-Meta-Analysis · papers/Jesse2021-Nudging-Recommender-Systems · concepts/Choice-Architecture（F34, F35, F37, F38）
+
+## S16 研究之間的矛盾
+- 版型：兩張對比卡片（Mertens vs Valta）＋便利貼（可能的解釋）
+- 內文：Meta-analysis：改變結構的 nudge 一致比較有效
+  Valta 實驗：預設選項和視覺突顯降低壓力的效果沒有差異
+  可能的解釋：一個看行為、一個看主觀壓力；而且 meta-analysis 有發表偏誤
+- 數據：結構 0.55 vs 資訊 0.38；mean diff = 0.03, p = .87；中度偏誤時 d 降到 0.31
+- 抽屜：
+- 圖貼：assets/friends/bookworm_thinking.svg（思考）
+- 台詞：書蟲「兩個都對，只是量的東西不一樣？」
+- 出處：questions/Structure-vs-Information-Nudges（F35, F36, F39）
+
+## S17 同一個按鈕的兩面
+- 版型：左卡片（幫人）＋右卡片（越界）＋便利貼（判斷原則）
+- 內文：幫人：預設選項和突顯讓人少一點壓力；在地 email 讓更多人捐款
+  越界：捐款流向富裕社區；購物網站用假倒數、假庫存欺騙
+  判斷原則：手法一樣，差在為誰的利益、資訊是否真實
+- 數據：點擊 +24%、捐款 +36%；收入高出 $7,710–$10,146；1,818 個 dark pattern、11.1% 網站、183 個網站有欺騙
+- 抽屜：
+- 圖貼：assets/tangyuan/tangyuan_happy.svg（開心）、assets/friends/niangao_cat_angry.svg（生氣）
+- 台詞：
+- 出處：papers/Rhue2026-Local-Personalization · papers/Mathur2019-Dark-Patterns · concepts/Dark-Patterns（F40–F43）
+
+## S18 減壓可以從介面開始
 - 版型：三張卡片（設計者／組織／AI 時代）＋小湯圓對話
 - 內文：設計者：重複低風險用預設選項，資訊多要比較用視覺突顯
   組織：介面設計和數位思維訓練可以互補
@@ -178,11 +211,11 @@ created: 2026-11-24
 - 台詞：小湯圓「好的設計，從使用者的感受出發！」
 - 出處：papers/Valta2026-Technostress-Nudges §6.2 · questions/Interface-Nudges-in-AI-Decision-Environments（F31–F33）
 
-## S16 一句話帶走
+## S19 一句話帶走
 - 版型：全員合照＋小黑板金句＋資料來源
 - 內文：複雜的任務不一定要變簡單，只要換個方式呈現，人就能少一點壓力
 - 數據：
 - 抽屜：
 - 圖貼：assets/friends/_group.png（全員開心）
 - 台詞：
-- 出處：資料來源清單：本次引用的 wiki 頁面＋原始論文（F01, F31）
+- 出處：資料來源清單：本次引用的 wiki 頁面＋5 篇原始論文（F01, F31, F34, F37, F41）

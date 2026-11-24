@@ -38,7 +38,7 @@ updated: 2026-11-24
 _尚無_
 
 ## Comparisons
-_尚無_
+- [[Five-Papers-on-Nudging]] — 5 篇論文的介入、類別、結果與綜合結論（簡報 S15–S17 的依據）
 
 ## Questions
 - [[Structure-vs-Information-Nudges]] — ⚠️ 矛盾：meta-analysis 說 structure 較強，Valta 實驗中兩者沒有差異

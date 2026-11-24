@@ -91,3 +91,11 @@ created: 2026-11-24
 - 26 頁；斷連結 0、孤兒頁 0、frontmatter 缺漏 0
 - 單向連結 43 處 → 自動在目標頁的「反向連結」段落補上
 - 待使用者注意：questions/Structure-vs-Information-Nudges（新矛盾）；所有新頁面 reviewed: false；Authors 仍無符合 2 篇以上的作者
+
+## [2026-11-24] slides | Valta2026-Technostress-Nudges 第二次執行（v2：加入 5 篇脈絡）
+- Stage 0：素材包新增 F34–F43（Mertens、Jesse、Mathur、Rhue、跨論文問題頁），共 43 則／6 則 ★；Check 0 通過；brief 頁數範圍改為 12–20
+- Stage 1：大綱插入 S15 研究脈絡、S16 研究之間的矛盾、S17 同一個按鈕的兩面（原 S15、S16 → S18、S19），共 19 頁；Check 1 通過 → Gate 1 使用者核准
+- Stage 2：腳本新增 3 頁；Check 2 通過
+- Stage 3：HTML 19 頁；Check 3-1 通過；Check 3-2（check_layout.js）：圖片失敗 0、溢出 0、遮擋 0
+- Stage 4：單檔版重新產生
+- Query 存檔：wiki/comparisons/Five-Papers-on-Nudging（5 篇綜合比較）

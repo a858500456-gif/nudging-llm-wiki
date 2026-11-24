@@ -62,6 +62,9 @@ Digital nudge design method：analysis（定義目標）→ design（設計 nudg
 - [[Jesse2021-Nudging-Recommender-Systems]]
 - [[Mathur2019-Dark-Patterns]]（反面：dark patterns）
 
+## 綜合比較
+- [[Five-Papers-on-Nudging]]
+
 ## 開放問題
 - 多個 nudge 組合使用時，效果是相加、相乘還是互相衝突？（[[Valta2026-Technostress-Nudges]] §6.3）
 - 長期反覆接觸後會不會 habituation（習慣化）？（同上）

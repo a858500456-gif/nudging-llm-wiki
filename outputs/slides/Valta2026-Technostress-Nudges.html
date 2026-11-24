@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="theme/kawaii.css">
 <!--
   依投影片製作 Graph v1.0 產生（outputs/graph/slide-pipeline.md）
-  Stage 3 輸入：specs/Valta2026-Technostress-Nudges/03-script.md（每個 section 對應腳本的一頁 S01–S16）
+  Stage 3 輸入：specs/Valta2026-Technostress-Nudges/03-script.md（每個 section 對應腳本的一頁 S01–S19；v2 加入 S15–S17 五篇脈絡）
   單檔版：dist/Valta2026-Technostress-Nudges.standalone.html（python3 tools/bundle_slides.py 產生）
 -->
 </head>
@@ -509,6 +509,91 @@
 
   <!-- S15 -->
   <section class="slide">
+    <div class="kicker">BIGGER PICTURE · 5 PAPERS</div>
+    <h2>放到更大的研究脈絡看</h2>
+    <div class="grid2" style="grid-template-columns: 1.35fr 1fr">
+      <div class="card">
+        <span class="tag">📊 Meta-analysis：214 篇研究，整體 d = <b class="num">0.45</b></span>
+        <table class="cute mt-s">
+          <tr><th>nudge 類型</th><th class="num">效果 d</th><th>本研究</th></tr>
+          <tr><td><b>改變選項結構</b>（預設…）</td><td class="num"><b>0.55</b></td><td>預設選項（<b class="num">0.62</b>，最強）</td></tr>
+          <tr><td>改變資訊（突顯、框架…）</td><td class="num">0.38</td><td>視覺突顯</td></tr>
+          <tr><td>協助決策（提醒…）</td><td class="num">0.31</td><td>—</td></tr>
+        </table>
+        <p class="small mt-s">Rhue 的「推薦住家附近」email 屬於改變資訊（閱讀觀察）</p>
+      </div>
+      <div class="card mint">
+        <img class="sticker peek" src="assets/friends/bookworm_happy.svg" alt="開心的書蟲">
+        <span class="tag mint">🔁 推薦系統也是 nudge</span>
+        <p>排序、篩選、「別人也買了」都在引導你。</p>
+        <p class="mt-s">文獻中有 <b class="num">87</b> 種 nudge 機制，推薦系統只研究過 <b class="num">18</b> 種，最常見的就是<b>預設選項和視覺突顯</b>。</p>
+      </div>
+    </div>
+    <p class="cite">出處：wiki/papers/Mertens2022-Nudging-Meta-Analysis · wiki/papers/Jesse2021-Nudging-Recommender-Systems · wiki/concepts/Choice-Architecture</p>
+  </section>
+
+  <!-- S16 -->
+  <section class="slide">
+    <div class="kicker">CONTRADICTION</div>
+    <h2>研究之間的矛盾</h2>
+    <div class="grid2 mt-m">
+      <div class="card sky">
+        <span class="tag sky">Meta-analysis（Mertens 2022）</span>
+        <h3>改變結構的 nudge 一致比較有效</h3>
+        <p>結構 d = <b class="num">0.55</b> vs 資訊 d = <b class="num">0.38</b></p>
+      </div>
+      <div class="card honey">
+        <span class="tag honey">本研究（Valta 2026）</span>
+        <h3>預設選項和視覺突顯，減壓效果<span class="hl pink">沒有差異</span></h3>
+        <p>mean diff = <b class="num">0.03</b>, p = .87</p>
+      </div>
+    </div>
+    <div class="row mt-l" style="align-items:center; gap:30px">
+      <div class="sticky" style="flex:1">
+        <span class="tag observe">閱讀觀察</span>
+        <ul>
+          <li>一個看<b>行為</b>，一個看<b>主觀壓力</b>，量的東西不一樣</li>
+          <li>meta-analysis 有發表偏誤：中度偏誤時 d 降到 <b class="num">0.31</b></li>
+        </ul>
+      </div>
+      <div class="speaker">
+        <div class="bubble">兩個都對，只是<br>量的東西不一樣？</div>
+        <img class="sticker m" src="assets/friends/bookworm_thinking.svg" alt="思考中的書蟲">
+      </div>
+    </div>
+    <p class="cite">出處：wiki/questions/Structure-vs-Information-Nudges</p>
+  </section>
+
+  <!-- S17 -->
+  <section class="slide">
+    <div class="kicker">TWO SIDES</div>
+    <h2>同一個按鈕的兩面</h2>
+    <div class="grid2 mt-m">
+      <div class="card mint">
+        <img class="sticker peek" src="assets/tangyuan/tangyuan_happy.svg" alt="開心的小湯圓">
+        <span class="tag mint">😊 幫人</span>
+        <ul>
+          <li>預設選項、突顯讓人少一點壓力（Valta）</li>
+          <li>在地 email：點擊 <b class="num">+24</b>%、捐款 <b class="num">+36</b>%（Rhue）</li>
+        </ul>
+      </div>
+      <div class="card pink">
+        <img class="sticker peek" src="assets/friends/niangao_cat_angry.svg" alt="生氣的年糕貓">
+        <span class="tag pink">⚠️ 越界</span>
+        <ul>
+          <li>捐款流向收入高出 $<b class="num">7,710</b>–<b class="num">10,146</b> 的地區（Rhue）</li>
+          <li>購物網站有 <b class="num">1,818</b> 個 dark pattern，出現在 <b class="num">11.1</b>% 的網站，<b class="num">183</b> 個有欺騙（Mathur）</li>
+        </ul>
+      </div>
+    </div>
+    <div class="sticky tilt-r mt-l">
+      <p>🔍 <b>判斷原則</b>：手法一樣（預設、突顯、稀缺、社會證明），差在<span class="hl">為誰的利益</span>、<span class="hl">資訊是否真實</span>。例如把最貴的商品設為預設，就是 dark pattern。</p>
+    </div>
+    <p class="cite">出處：wiki/papers/Rhue2026-Local-Personalization · wiki/papers/Mathur2019-Dark-Patterns · wiki/concepts/Dark-Patterns</p>
+  </section>
+
+  <!-- S18 -->
+  <section class="slide">
     <div class="kicker">SO WHAT?</div>
     <h2>減壓可以從介面開始</h2>
     <div class="grid3 mt-l">
@@ -537,7 +622,7 @@
     <p class="cite">出處：wiki/papers/Valta2026-Technostress-Nudges §6.2 · wiki/questions/Interface-Nudges-in-AI-Decision-Environments</p>
   </section>
 
-  <!-- S16 -->
+  <!-- S19 -->
   <section class="slide">
     <div class="center" style="align-items:center; text-align:center">
       <h2 style="margin-bottom:12px">一句話帶走</h2>
@@ -546,8 +631,8 @@
         <p class="big-quote" style="color:var(--chalk-ink)">複雜的任務不一定要變簡單，<br><span class="chalk-u">只要換個方式呈現</span>，人就能少一點壓力。</p>
       </div>
       <p class="small mt-l" style="max-width:1200px">
-        <b>資料來源（本知識庫 wiki）</b>：papers/Valta2026-Technostress-Nudges · concepts/Technostress · concepts/Digital-Nudging · concepts/Cognitive-Effort · concepts/Digital-Mindset · questions/Who-Benefits-More-From-Interface-Nudges · questions/Interface-Nudges-in-AI-Decision-Environments<br>
-        <b>原始論文</b>：Valta, M., Maier, C., &amp; Hildebrandt, Y. (2026). Designing away technostress. <i>Information &amp; Management</i>, 63, 104421.
+        <b>資料來源（本知識庫 wiki）</b>：papers/Valta2026-Technostress-Nudges · concepts/Technostress · concepts/Digital-Nudging · concepts/Cognitive-Effort · concepts/Digital-Mindset · questions/Who-Benefits-More-From-Interface-Nudges · questions/Structure-vs-Information-Nudges · concepts/Choice-Architecture · concepts/Dark-Patterns<br>
+        <b>原始論文</b>：Valta et al. (2026) <i>Information &amp; Management</i> · Rhue et al. (2026) <i>MIS Quarterly</i> · Mertens et al. (2022) <i>PNAS</i> · Jesse &amp; Jannach (2021) <i>CHB Reports</i> · Mathur et al. (2019) <i>CSCW</i>
       </p>
     </div>
   </section>

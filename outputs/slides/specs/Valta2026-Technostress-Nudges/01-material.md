@@ -57,3 +57,15 @@ created: 2026-11-24
 - [F31] 貢獻：壓力不只取決於複雜度本身，也取決於複雜度如何透過介面被遇到；nudging 研究從「選了什麼」延伸到「怎麼經驗選擇」 ⟨src: papers/Valta2026-Technostress-Nudges §6.1⟩
 - [F32] 實務：重複低風險設定用預設選項、資訊多需比較用視覺突顯；介面設計和數位思維訓練可以互補 ⟨src: papers/Valta2026-Technostress-Nudges §6.2⟩
 - [F33] AI 介面可以突顯信心程度、風險、資料來源；🔍 但突顯 AI 建議本身也可能造成過度依賴 ⟨src: questions/Interface-Nudges-in-AI-Decision-Environments §6.2⟩
+
+## 第二次執行（v2）：其他 4 篇論文的脈絡
+- [F34] Nudge meta-analysis：214 篇、455 個效果量，整體 d = 0.45（95% CI [0.39, 0.52]） ⟨src: papers/Mertens2022-Nudging-Meta-Analysis §Results⟩
+- [F35★] 改變選項結構（decision structure）d = 0.55，強於改變資訊（decision information）d = 0.38、協助決策（decision assistance）d = 0.31；預設選項 d = 0.62 是最強的技術 ⟨src: papers/Mertens2022-Nudging-Meta-Analysis Table 2⟩
+- [F36] 有發表偏誤：假設中度偏誤時整體 d 降到 0.31；約 15% 的介入可能適得其反 ⟨src: papers/Mertens2022-Nudging-Meta-Analysis §Results⟩
+- [F37] 推薦系統的篩選和排序本身就是 nudge；文獻中有 87 種 nudging 機制，推薦系統只研究過 18 種，最常見的是預設選項和視覺突顯 ⟨src: papers/Jesse2021-Nudging-Recommender-Systems §5⟩
+- [F38] 🔍 放進同一套分類：Valta 的預設選項屬於 decision structure，視覺突顯和 Rhue 的地方化 email 屬於 decision information ⟨src: concepts/Choice-Architecture §已收錄研究⟩
+- [F39★] 矛盾：meta-analysis 說 structure 較強，但 Valta 實驗中兩種 nudge 沒有差異（mean diff = 0.03, p = .87）；可能原因是結果變數不同（行為 vs 主觀壓力） ⟨src: questions/Structure-vs-Information-Nudges §問題陳述⟩
+- [F40] 推薦住家附近的 email：點擊提高 24%、捐款提高 36%，但捐款流向中位數收入高出 $7,710–$10,146 的地區（rich-get-richer） ⟨src: papers/Rhue2026-Local-Personalization §H1, H3⟩
+- [F41★] Dark patterns：約 11K 個購物網站中找到 1,818 個，出現在 11.1% 的網站；183 個網站有欺騙行為；22 家第三方公司提供現成工具 ⟨src: papers/Mathur2019-Dark-Patterns §5⟩
+- [F42] Dark pattern 和 nudge 用的是同樣的手法（預設、突顯、稀缺、社會證明），差別在於為誰的利益服務、資訊是否真實 ⟨src: concepts/Dark-Patterns §和 nudge 的差別⟩
+- [F43] Pressured Selling 把最貴的商品設為預設；Visual Interference 把拒絕選項變灰，看起來像不能點 ⟨src: papers/Mathur2019-Dark-Patterns §5⟩
